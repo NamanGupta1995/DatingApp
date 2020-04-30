@@ -12,6 +12,7 @@ namespace DatingApp.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         
         public virtual DbSet<Value> Values { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +20,11 @@ namespace DatingApp.API.Data
             {
                 entity.HasKey(e => e.id);
                 entity.ToTable("Values", "dbo");
+            });
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.ToTable("Users", "dbo");
             });
         }
 
